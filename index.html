@@ -3,114 +3,70 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta name="Description" content="PWA JS." />
-    <title>Administrador de Pacientes</title>
-    <link rel="stylesheet" href="css/bootstrap.css" />
+    <title>Admin de Pacientes</title>
     <link rel="stylesheet" href="css/styles.css" />
-    <link rel="manifest" href="manifest.json" />
-    <link rel="apple-touch-icon" href="img/icons/icon-96x96.png" />
-    <!-- <meta name="apple-mobile-web-app-capable" content="yes"> -->
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta
-      name="apple-mobile-web-app-status-bar-style"
-      content="black-translucent"
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="manifest" href="manifest.json" />
     <meta name="theme-color" content="black" />
   </head>
   <body>
-    <h2 class="text-center my-5 titulo">Admin de Pacientes de Veterinaria</h2>
-    <div class="container mt-5 p-5">
-      <div id="contenido" class="row">
-        <div class="col-md-6 agregar-cita">
-          <form id="nueva-cita">
-            <legend class="mb-4">Datos del Paciente</legend>
-            <div class="form-group row">
-              <label class="col-sm-4 col-lg-4 col-form-label"
-                >Nombre Mascota:</label
-              >
-              <div class="col-sm-8 col-lg-8">
-                <input
-                  type="text"
-                  id="mascota"
-                  name="mascota"
-                  class="form-control"
-                  placeholder="Nombre Mascota"
-                />
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-sm-4 col-lg-4 col-form-label"
-                >Propietario:</label
-              >
-              <div class="col-sm-8 col-lg-8">
-                <input
-                  type="text"
-                  id="propietario"
-                  name="propietario"
-                  class="form-control"
-                  placeholder="Nombre Dueño de la Mascota"
-                />
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-sm-4 col-lg-4 col-form-label">Teléfono:</label>
-              <div class="col-sm-8 col-lg-8">
-                <input
-                  type="tel"
-                  id="telefono"
-                  name="telefono"
-                  class="form-control"
-                  placeholder="Número de Teléfono"
-                />
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-sm-4 col-lg-4 col-form-label">Fecha:</label>
-              <div class="col-sm-8 col-lg-8">
-                <input
-                  type="date"
-                  id="fecha"
-                  name="fecha"
-                  class="form-control"
-                />
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label class="col-sm-4 col-lg-4 col-form-label">Hora:</label>
-              <div class="col-sm-8 col-lg-8">
-                <input type="time" id="hora" name="hora" class="form-control" />
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label class="col-sm-4 col-lg-4 col-form-label">Sintomas:</label>
-              <div class="col-sm-8 col-lg-8">
-                <textarea
-                  id="sintomas"
-                  name="sintomas"
-                  class="form-control"
-                ></textarea>
-              </div>
-            </div>
-            <div class="form-group">
-              <button type="submit" class="btn btn-success w-100 d-block">
-                Crear Cita
-              </button>
-            </div>
-          </form>
+    <header class="header">
+      <nav class="navbar">
+        <div class="menu-icon">&#9776;</div>
+        <h1 class="nav-title">Home</h1>
+        <div class="profile-pic">
+          <img src="img/icons/Icon-72.png" alt="Profile" />
         </div>
-        <div class="col-md-6">
-          <h2 id="administra" class="mb-4"></h2>
-          <ul id="citas" class="list-group lista-citas"></ul>
-        </div>
-      </div>
-      <!--.row-->
+      </nav>
+    </header>
+
+    <div id="permissions-status" class="permissions-container">
+      <button
+        id="permissions-button"
+        class="btn btn-danger d-flex align-items-center gap-2"
+      >
+        <i id="permissions-icon" class="bi bi-bell-slash-fill"></i>
+        <span id="permissions-text">Sin Permiso</span>
+      </button>
     </div>
-    <!--.container-->
+
+    <main class="main">
+      <div class="button-container">
+        <button class="main-button" id="main-action">
+          <span class="icon">&#9758;</span>
+        </button>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-item active">
+        <i class="bi bi-house-door-fill"></i>
+        <p>Home</p>
+      </div>
+      <div class="footer-item">
+        <i class="bi bi-calendar-check-fill"></i>
+        <p>Citas</p>
+      </div>
+      <div class="footer-item">
+        <i class="bi bi-gear-fill"></i>
+        <p>Config</p>
+      </div>
+    </footer>
 
     <script src="js/app.js"></script>
-    <script src="js/apv.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

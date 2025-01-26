@@ -1,52 +1,169 @@
-html {
-  min-height: 100%;
-}
+/* General Styles */
 body {
   margin: 0;
-  padding: 0;
   font-family: sans-serif;
-  background-image: linear-gradient(-225deg, #A445B2 0%, #D41872 52%, #FF0066 100%);
-  min-height: 100%;
-  padding-bottom: 5rem;
-}
-.titulo {
-  font-weight: bold;
-  font-size: 2rem;
-  text-transform: uppercase;
+  background: linear-gradient(-225deg, #A445B2 0%, #D41872 52%, #FF0066 100%);
   color: white;
-}
-.container {
-    background-color: white;
-}
-header {
-  margin-top: 3rem;
-}
-header h1 {
-  color: white;
-}
-.lista-citas .cita {
-  border-bottom: 1px solid #e1e1e1;
-  padding: 2rem;
-  padding-bottom: 3rem;
-  
-}
-.lista-citas .cita:last-of-type {
-  border-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.lista-citas .cita p {
-  margin:0;
-}
-.lista-citas .cita button {
-  margin-top: 1rem!important;
-}
-.lista-citas .cita span {
-  font-weight: bold;
-}
-textarea {
-    height: 200px!important;
+/* Header */
+.header {
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
+  /* Distribuye los elementos */
+  align-items: center;
+  /* Centra verticalmente los elementos */
+  padding: 1rem 1.5rem;
 }
 
-svg {
-  width: 21px;
+.navbar {
+  display: flex;
+  flex: 1;
+  /* Asegura que los elementos se distribuyan a lo largo del espacio */
+}
+
+.nav-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0 auto;
+  /* Centra el texto dentro del espacio */
+  text-align: center;
+  white-space: nowrap;
+  /* Evita que el texto se desborde */
+}
+
+.menu-icon {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.profile-pic img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+/* Contenedor del botón de permisos */
+.permissions-container {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+/* Botón de permisos */
+.permissions-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #ff4f5a;
+  /* Rojo por defecto */
+  border: none;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 25px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.permissions-btn:hover {
+  transform: scale(1.05);
+}
+
+.permissions-btn.enabled {
+  background-color: #28a745;
+  /* Verde cuando está habilitado */
+}
+
+.permissions-btn.disabled {
+  background-color: #ff4f5a;
+  /* Rojo cuando está deshabilitado */
+}
+
+/* Icono del botón */
+.permissions-btn .material-icons {
+  font-size: 1.5rem;
+}
+
+/* Main Section */
+.main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-container {
+  text-align: center;
+  position: relative;
+}
+
+.main-button {
+  width: 120px;
+  height: 120px;
+  background: #ff4f5a;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  font-size: 36px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-button:hover {
+  background: #ff2a3b;
+}
+
+.icon {
+  font-size: 48px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* Footer */
+.footer {
+  background: #fff;
+  color: #333;
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5rem 0;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.footer-item {
+  text-align: center;
+  font-size: 0.9rem;
+  flex: 1;
+}
+
+.footer-item.active {
+  color: #d41872;
+  font-weight: bold;
+}
+
+.footer-icon {
+  font-size: 24px;
+  display: block;
 }

@@ -38,25 +38,37 @@ if (userInteracted) {
   }, 5000);
 }
 
-// Registrar interacción del usuario al hacer clic en el botón
+// Función para alternar el permiso
 permissionsButton.addEventListener("click", () => {
-  if (!userInteracted) {
-    userInteracted = true;
-    localStorage.setItem("userInteracted", "true"); // Guardar interacción en localStorage
-    permissionsButton.classList.remove("btn-danger");
-    permissionsButton.classList.add("btn-success"); // Cambia a verde
-    permissionsIcon.className = "bi bi-check-circle-fill"; // Cambiar a ícono de check
-    permissionsText.textContent = "Permiso Habilitado";
-
-    // Iniciar el sonido después de 5 segundos
-    setTimeout(() => {
-      if (!cooldown) {
-        audio
-          .play()
-          .then(() => console.log("Reproduciendo sonido en bucle..."));
-      }
-    }, 5000);
+  if (userInteracted) {
+    // Deshabilitar permiso
+    userInteracted = false;
+    localStorage.setItem("userInteracted", "false");
+    permissionsButton.classList.remove("btn-success");
+    permissionsButton.classList.add("btn-danger"); // Cambia a rojo
+    permissionsIcon.className = "bi bi-lock-fill"; // Cambiar ícono a candado
+    permissionsText.textContent = "Sin Permiso";
+    console.log("Permiso revocado. Deteniendo sonido.");
+    audio.pause();
+    audio.currentTime = 0; // Reiniciar el audio
+    return;
   }
+
+  // Habilitar permiso
+  userInteracted = true;
+  localStorage.setItem("userInteracted", "true");
+  permissionsButton.classList.remove("btn-danger");
+  permissionsButton.classList.add("btn-success"); // Cambia a verde
+  permissionsIcon.className = "bi bi-check-circle-fill"; // Cambiar ícono a check
+  permissionsText.textContent = "Permiso Habilitado";
+  console.log("Permiso otorgado y registrado en localStorage.");
+
+  // Iniciar el sonido después de 5 segundos
+  setTimeout(() => {
+    if (!cooldown) {
+      audio.play().then(() => console.log("Reproduciendo sonido en bucle..."));
+    }
+  }, 5000);
 });
 
 // Evento para detener el sonido
@@ -70,7 +82,9 @@ document.getElementById("main-action").addEventListener("click", () => {
   // Configurar un descanso de 10 segundos antes de reiniciar
   setTimeout(() => {
     cooldown = false;
-    console.log("Descanso finalizado. Reanudando sonido.");
-    audio.play().then(() => console.log("Reproduciendo sonido en bucle..."));
+    if (userInteracted) {
+      console.log("Descanso finalizado. Reanudando sonido.");
+      audio.play().then(() => console.log("Reproduciendo sonido en bucle..."));
+    }
   }, 10000); // 10 segundos
 });
